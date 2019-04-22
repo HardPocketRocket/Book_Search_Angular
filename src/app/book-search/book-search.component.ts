@@ -8,9 +8,10 @@ import { SearchService } from '../Services/search.service'
   templateUrl: './book-search.component.html',
   styleUrls: ['./book-search.component.css']
 })
+
 export class BookSearchComponent implements OnInit {
+  private searchTag = 'q';
   private searchValue: string;
-  form: FormGroup;
 
   constructor(private searchService: SearchService) { }
 
@@ -18,8 +19,7 @@ export class BookSearchComponent implements OnInit {
 
   onSearchClicked(searchValue: string) {
     this.searchValue = searchValue;
-
-    this.searchService.getSearchResults(this.searchValue).subscribe(data => console.log(data));
+    console.log(this.searchService.getSearchResults(this.searchValue,this.searchTag));
+    this.searchService.getSearchResults(this.searchValue,this.searchTag).subscribe(data => console.log(data));
   }
-
 }

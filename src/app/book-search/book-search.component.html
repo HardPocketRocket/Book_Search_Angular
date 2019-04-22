@@ -5,10 +5,26 @@
 <input #search type="text" class="form-control" placeholder="Search">
 <button (click) = "onSearchClicked(search.value)">Search</button>
 <div>
-<label class="form-check-inline">
-    <input class="form-check-input" type="radio" name="searchBy" [value]="General" text="">
-</label>
-<label class="form-check-inline">
-    <input class="form-check-input" type="radio" name="searchBy" [value]="false">
-</label>
+
+<div class="form-group">
+  <div class="form-control">
+    <label class="radio-inline">
+      <input type="radio" name="searchBy" value="q" [(ngModel)]="searchTag">
+      <span>General</span>
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="searchBy" value="title" [(ngModel)]="searchTag">
+      <span>Title</span>
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="searchBy" value="author" [(ngModel)]="searchTag">
+      <span>Author</span>
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="searchBy" value="subject" [(ngModel)]="searchTag">
+      <span>Subject</span>
+    </label>
+  </div>
 </div>
+
+<p>{{searchTag}}</p>
