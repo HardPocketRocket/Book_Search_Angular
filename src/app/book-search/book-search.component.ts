@@ -19,7 +19,6 @@ export class BookSearchComponent implements OnInit {
 
   onSearchClicked(searchValue: string) {
     this.searchValue = searchValue;
-    console.log(this.searchService.getSearchResults(this.searchValue,this.searchTag));
     this.searchService.getSearchResults(this.searchValue,this.searchTag).subscribe(data => console.log(data));
   }
 }

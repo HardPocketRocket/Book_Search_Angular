@@ -8,10 +8,6 @@ import {BookDetailsComponent} from './book-details/book-details.component'
 const routes: Routes = [
   {
     path: 'search',
-    component: BookSearchComponent
-  },
-  {
-    path: 'results',
     component: BookSearchResultsComponent
   },
   {
