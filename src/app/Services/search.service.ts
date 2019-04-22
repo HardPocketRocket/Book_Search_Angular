@@ -1,33 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { SearchResults } from '../Model/SearchResults';
-import { OpenLibraryConfig } from '../Config/OpenLibraryConfig'
 
 @Injectable()
 export class SearchService {
-    private static SEARCH_TERMS = ['q', 'title', 'author', 'subject'];
-    private static CURRENT_SEARCH_TAG = 'q';
-    private static SEARCH_VALUE = 'all'
+  private static SEARCH_TAGS = ['q', 'title', 'author', 'subject'];
+  private static CURRENT_SEARCH_TAG = 'q';
 
-    constructor(private http: HttpClient) {
+  searchUrl: string = 'https://openlibrary.org/search.json?';
 
-    }
+  constructor(private http: HttpClient) { }
 
-    getSearchResults() {
-        return this.http.get<SearchResults>(
-            OpenLibraryConfig.SEARCH_URL
-            + '?'
-            + SearchService.CURRENT_SEARCH_TAG
-            + '='
-            + SearchService.SEARCH_VALUE
-        );
-    }
+  getSearchResults(searchValue: string) {
+    return this.http.get(this.searchUrl + SearchService.CURRENT_SEARCH_TAG + '=' + searchValue);
+  }
 
-    setSearchValue(val: string) {
-        SearchService.SEARCH_VALUE = val;
-    }
+  setCurrentSearchTag(val: string) {
+    SearchService.CURRENT_SEARCH_TAG = val;
+  }
 
-    setSearchTag(val: string) {
-        SearchService.CURRENT_SEARCH_TAG = val;
-    }
+  getSearchTags() {
+    return SearchService.SEARCH_TAGS;
+  }
 }
