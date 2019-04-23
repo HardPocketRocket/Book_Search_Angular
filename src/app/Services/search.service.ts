@@ -1,8 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import {Results} from '../Models/Results';
-
 @Injectable()
 export class SearchService {
   searchUrl: string = 'https://openlibrary.org/search.json?';
@@ -11,7 +9,7 @@ export class SearchService {
 
   constructor(private http: HttpClient) { }
 
-  getSearchResults() {
+  getResults() {
     return this.http.get(this.searchUrl + this.searchTag + '=' + this.searchValue);
   }
 
