@@ -2,27 +2,24 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import {Results} from '../Models/Results';
-import {BookSearchResultsComponent} from '../book-search-results/book-search-results.component'
 
 @Injectable()
 export class SearchService {
   searchUrl: string = 'https://openlibrary.org/search.json?';
+  searchValue: string = 'default'
+  searchTag: string = 'q'
 
-  private data: any = [];
+  constructor(private http: HttpClient) { }
 
-  constructor(private http: HttpClient, private bookSearchResultsComponent: BookSearchResultsComponent) { }
-
-  getSearchResults(searchValue: string, currentSearchTag: string) {
-    this.http.get(this.searchUrl + currentSearchTag + '=' + searchValue)
-    .subscribe(data=>{
-        this.data = data
-        this.updateResults();
-    });
+  getSearchResults() {
+    return this.http.get(this.searchUrl + this.searchTag + '=' + this.searchValue);
   }
 
-  updateResults(){
-    console.log("sdfsdf")
-    console.log(this.data);
-    this.bookSearchResultsComponent.setData(this.data);
+  setSearchTag(val: string){
+    this.searchTag = val;
+  }
+
+  setSearchValue(val: string){
+    this.searchValue = val;
   }
 }

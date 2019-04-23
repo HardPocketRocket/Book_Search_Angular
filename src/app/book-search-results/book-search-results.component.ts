@@ -1,22 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+
+import { SearchService } from '../Services/search.service'
 
 @Component({
   selector: 'app-book-search-results',
   templateUrl: './book-search-results.component.html',
-  styleUrls: ['./book-search-results.component.css']
+  styleUrls: ['./book-search-results.component.css'],
 })
 
 export class BookSearchResultsComponent implements OnInit {
   private data: any = [];
 
-  constructor() { }
+ //constructor(private searchService: SearchService) { }
 
-  ngOnInit() {
+  constructor(private ref: ChangeDetectorRef, private searchService: SearchService) {
+    console.log('Hello PhotoComponent Component');  
+    setInterval(() => {
+      this.ref.detectChanges();
+    }, 500);  
   }
 
-  setData(data){
-    this.data = data;
-    console.log(this.data.numFound);
-    console.log(this.data.docs);
+  ngOnInit() {
+    this.searchService.getSearchResults().subscribe(data => {
+      this.data.push(data);
+      console.log(data);
+    })
+  }
+
+  updateResults(){
+    this.searchService.getSearchResults().subscribe(data => {
+      this.data.push(data);
+      console.log(data);
+    })
   }
 }

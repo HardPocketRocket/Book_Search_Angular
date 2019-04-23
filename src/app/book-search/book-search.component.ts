@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
-import { SearchService } from '../Services/search.service'
+import { SearchService } from '../Services/search.service';
+import {BookSearchResultsComponent} from '../book-search-results/book-search-results.component'
 
 @Component({
   selector: 'app-book-search',
@@ -11,15 +12,14 @@ import { SearchService } from '../Services/search.service'
 
 export class BookSearchComponent implements OnInit {
   private searchTag = 'q';
-  private searchValue: string;
 
-  constructor(private searchService: SearchService) { }
+  constructor(private searchService: SearchService,private  bookSearchResultsComponent: BookSearchResultsComponent) { }
 
   ngOnInit() { }
 
   onSearchClicked(searchValue: string) {
-    this.searchValue = searchValue;
-    this.searchService.getSearchResults(this.searchValue,this.searchTag);
-    
+    this.searchService.setSearchTag(this.searchTag);
+    this.searchService.setSearchValue(searchValue);
+    this.bookSearchResultsComponent.updateResults();
   }
 }
