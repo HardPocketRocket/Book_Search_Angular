@@ -4,7 +4,6 @@ import {Observable} from 'rxjs/Rx';
 
 import { SearchService } from '../Services/search.service';
 import {Results} from '../Models/Results'
-import {BookSearchResultsComponent} from '../book-search-results/book-search-results.component'
 
 @Component({
   selector: 'app-book-search',
@@ -14,7 +13,7 @@ import {BookSearchResultsComponent} from '../book-search-results/book-search-res
 
 export class BookSearchComponent implements OnInit {
   private searchTag = 'q';
-  private results: Observable<Results>;
+  private results;
 
   constructor(private searchService: SearchService) { }
 
@@ -25,11 +24,12 @@ export class BookSearchComponent implements OnInit {
   onSearchClicked(searchValue: string) {
     this.searchService.setSearchTag(this.searchTag);
     this.searchService.setSearchValue(searchValue);
+    this.getResults();
   }
 
   getResults(){
     this.searchService.getResults().subscribe(data => {
-      this.data = data,
+      this.results = data,
       console.log(data);
     })
   }

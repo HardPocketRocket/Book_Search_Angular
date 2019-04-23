@@ -2,13 +2,12 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
 import {BookSearchComponent} from './book-search/book-search.component'
-import {BookSearchResultsComponent} from './book-search-results/book-search-results.component'
 import {BookDetailsComponent} from './book-details/book-details.component'
 
 const routes: Routes = [
   {
     path: 'search',
-    component: BookSearchResultsComponent
+    component: BookSearchComponent
   },
   {
     path: 'details',
