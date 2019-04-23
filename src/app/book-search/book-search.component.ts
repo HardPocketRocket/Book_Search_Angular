@@ -13,13 +13,12 @@ import {BookSearchResultsComponent} from '../book-search-results/book-search-res
 export class BookSearchComponent implements OnInit {
   private searchTag = 'q';
 
-  constructor(private searchService: SearchService,private  bookSearchResultsComponent: BookSearchResultsComponent) { }
+  constructor(private searchService: SearchService) { }
 
   ngOnInit() { }
 
   onSearchClicked(searchValue: string) {
     this.searchService.setSearchTag(this.searchTag);
     this.searchService.setSearchValue(searchValue);
-    this.bookSearchResultsComponent.updateResults();
   }
 }

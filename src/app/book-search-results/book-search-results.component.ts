@@ -11,23 +11,9 @@ import { SearchService } from '../Services/search.service'
 export class BookSearchResultsComponent implements OnInit {
   private data: any = [];
 
- //constructor(private searchService: SearchService) { }
-
-  constructor(private ref: ChangeDetectorRef, private searchService: SearchService) {
-    console.log('Hello PhotoComponent Component');  
-    setInterval(() => {
-      this.ref.detectChanges();
-    }, 500);  
-  }
+  constructor(private searchService: SearchService) { }
 
   ngOnInit() {
-    this.searchService.getSearchResults().subscribe(data => {
-      this.data.push(data);
-      console.log(data);
-    })
-  }
-
-  updateResults(){
     this.searchService.getSearchResults().subscribe(data => {
       this.data.push(data);
       console.log(data);
