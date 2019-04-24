@@ -13,7 +13,7 @@ import {Results} from '../Models/Results'
 
 export class BookSearchComponent implements OnInit {
   private searchTag = 'q';
-  private results;
+  private results: Results;
 
   constructor(private searchService: SearchService) { }
 
@@ -30,7 +30,8 @@ export class BookSearchComponent implements OnInit {
   getResults(){
     this.searchService.getResults().subscribe(data => {
       this.results = data,
-      console.log(data);
+      console.log(this.results);
+      this.searchService.getPresentableInfo(this.results.docs);
     })
   }
 }
