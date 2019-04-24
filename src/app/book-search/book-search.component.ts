@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import {Observable} from 'rxjs/Rx';
 
 import { SearchService } from '../Services/search.service';
+import {DetailsService} from '../Services/details.service'
 import {Results} from '../Models/Results'
 
 @Component({
@@ -13,9 +14,9 @@ import {Results} from '../Models/Results'
 
 export class BookSearchComponent implements OnInit {
   private searchTag = 'q';
-  private results: Results;
+  private results: any[] = [];
 
-  constructor(private searchService: SearchService) { }
+  constructor(private searchService: SearchService, private detailsService: DetailsService) { }
 
   ngOnInit() {
     this.getResults();
@@ -27,11 +28,8 @@ export class BookSearchComponent implements OnInit {
     this.getResults();
   }
 
-  getResults(){
-    this.searchService.getResults().subscribe(data => {
-      this.results = data,
-      console.log(this.results);
-      this.searchService.getPresentableInfo(this.results.docs);
-    })
+  async getResults(){
+    await this.searchService.getResults();
+    this.searchService.test();
   }
 }

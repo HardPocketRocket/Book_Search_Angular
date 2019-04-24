@@ -3,24 +3,25 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class DetailsService {
-  detailsUrl: string = 'https://openlibrary.org/api/books?bibkeys=OLID:'
-  options: string = '&jscmd=data&format=json'
+  private detailsUrl: string = 'https://openlibrary.org/api/books?bibkeys=OLID:'
+  private options: string = '&jscmd=data&format=json'
 
-  detailedResult: any[] = [];
+  private globalTemp;
+
+  private detailedResults: any[] = [];
 
   constructor(private http: HttpClient) { }
 
   getDetails(key: string){
-    return this.http.get(this.detailsUrl + key + this.options).subscribe(
-      data => {
-        this.detailedResult.push(data)
-        console.log(this.detailedResult);
-      }
-    )
+    return this.http.get(this.detailsUrl + key + this.options)
   }
 
   clearResults(){
-    this.detailedResult.length = 0;
+    this.detailedResults.length = 0;
+  }
+
+  getDetailedResults(){
+    return this.detailedResults
   }
 
 }
