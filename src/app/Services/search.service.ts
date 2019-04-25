@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import 'rxjs/add/operator/toPromise';
+import {Observable} from 'rxjs/Rx';
 
 import {Results} from '../Models/Results'
 import {Doc} from '../Models/Document'
@@ -17,48 +17,8 @@ export class SearchService {
 
   constructor(private http: HttpClient, private detailsService: DetailsService) { }
 
-  getResults() {
-
-    var promise = new Promise((resolve, reject) => {
-      this.http.get(this.searchUrl + this.searchTag + '=' + this.searchValue).subscribe(
-      data => {
-        this.getPresentableInfo(data.docs)
-      })
-    resolve();
-    });
-
-    return promise;
-
-    // this.http.get(this.searchUrl + this.searchTag + '=' + this.searchValue).subscribe(
-    //   data => {
-    //     this.getPresentableInfo(data.docs)
-    //   })
-    //   console.log(this.detailedResults);
-  }
-
-  getPresentableInfo(result: Doc[]){
-    this.getKeys(result);
-    this.detailsService.clearResults();
-
-    for(let i = 0; i < this.resultKeys.length; i++){
-      this.detailsService.getDetails(this.resultKeys[i]).subscribe(
-      data => {
-        for (var key in data) {
-          this.detailedResults.push(data[key]);
-        }
-      })
-    }
-  }
-
-  getKeys(result: Doc[]){
-    this.resultKeys.length = 0;
-    for(let i = 0; i < result.length; i++){
-      this.resultKeys.push(result[i].text[0])
-    }
-  }
-
-  test(){
-    console.log(this.detailedResults);
+  getResults(){
+    return this.http.get(this.searchUrl + this.searchTag + '=' + this.searchValue)
   }
 
   setSearchTag(val: string){

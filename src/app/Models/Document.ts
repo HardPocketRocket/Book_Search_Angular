@@ -3,4 +3,5 @@ export interface Doc {
   subject: string[];
   title: string;
   text: string[];
+  coverUrl: string;
 }

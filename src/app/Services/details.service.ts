@@ -1,14 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {Observable} from 'rxjs/Rx';
 
 @Injectable()
 export class DetailsService {
   private detailsUrl: string = 'https://openlibrary.org/api/books?bibkeys=OLID:'
   private options: string = '&jscmd=data&format=json'
-
-  private globalTemp;
-
-  private detailedResults: any[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -16,12 +13,16 @@ export class DetailsService {
     return this.http.get(this.detailsUrl + key + this.options)
   }
 
-  clearResults(){
-    this.detailedResults.length = 0;
+  getCover(key: string): string{
+    var coverUrl = "none"
+    this.http.get(this.detailsUrl + key + this.options).subscribe(data => {
+        for (var key in data) {
+          if(typeof data[key].cover != 'undefined'){
+            coverUrl = data[key].cover.medium;
+          }
+          return coverUrl;
+        }
+      }
+    )
   }
-
-  getDetailedResults(){
-    return this.detailedResults
-  }
-
 }
