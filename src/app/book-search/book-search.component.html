@@ -31,6 +31,8 @@
 
 <ul>
   <li *ngFor="let result of results.docs">
-	  {{result.coverUrl}}
+    <img src={{result.coverUrl}}/><br>
+    <tr>{{result.title}}</tr>
+    <tr>{{result.author_name}}</tr><br>
   </li>
 </ul>

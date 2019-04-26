@@ -41,6 +41,7 @@ export class BookSearchComponent implements OnInit {
           }
         })    
       }
+      console.log(this.results)
     })
   }
 }
