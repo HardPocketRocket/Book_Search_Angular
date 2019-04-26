@@ -1,0 +1,12 @@
+.result-card {
+  max-width: 300px;
+  max-height: 500px;
+}
+
+.result-image {
+  max-width: 300px;
+  max-height: 300px;
+  min-height: 300px;
+  min-width: 300px;
+}
+

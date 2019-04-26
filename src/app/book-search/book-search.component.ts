@@ -14,8 +14,10 @@ import { Results } from '../Models/Results'
 
 export class BookSearchComponent implements OnInit {
   private searchTag = 'q';
+  private isDetails = false;
 
   private results: Results;
+  private details: Book;
 
   constructor(private searchService: SearchService, private detailsService: DetailsService) { }
 
@@ -23,7 +25,19 @@ export class BookSearchComponent implements OnInit {
 
   }
 
+  onBookClicked(key: string){
+    this.isDetails = true;
+    console.log(key);
+    this.detailsService.getDetails(key).subscribe(data => {
+      for(var key in data){
+        this.details = data[key];
+      }
+      console.log(this.details);
+    })
+  }
+
   onSearchClicked(searchValue: string) {
+    this.isDetails = false;
     this.searchService.setSearchTag(this.searchTag);
     this.searchService.setSearchValue(searchValue);
     this.searchService.getResults().subscribe(data => {
@@ -36,7 +50,7 @@ export class BookSearchComponent implements OnInit {
               this.results.docs[i].coverUrl = data[key].cover.medium;
             }
             else{
-              this.results.docs[i].coverUrl = 'none'
+              this.results.docs[i].coverUrl = 'https://i.imgur.com/J5LVHEL.jpg'
             }
           }
         })    

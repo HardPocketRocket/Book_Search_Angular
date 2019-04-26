@@ -7,14 +7,16 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { HelloComponent } from './hello.component';
-import { BookDetailsComponent } from './book-details/book-details.component';
 import { BookSearchComponent } from './book-search/book-search.component';
 import { DetailsService } from './Services/details.service';
 import { SearchService } from './Services/search.service';
 
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatCardModule} from '@angular/material/card';
+
 @NgModule({
-  imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
-  declarations: [AppComponent,  BookDetailsComponent, BookSearchComponent],
+  imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule, MatGridListModule, MatCardModule],
+  declarations: [AppComponent, BookSearchComponent],
   bootstrap: [AppComponent],
   providers: [DetailsService, SearchService]
 })
