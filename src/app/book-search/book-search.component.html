@@ -27,14 +27,13 @@
       </label>
     </div>
   </div>
+
 </div>
 
 <div [ngSwitch]="isDetails">
   <div *ngSwitchCase="false">
-
-
     <mat-grid-list cols="5" rowHeight="500px">
-      <mat-grid-tile *ngFor="let result of results.docs" (click) = onBookClicked(result.text[0]) [colspan]="1">
+      <mat-grid-tile *ngFor="let result of results.docs"[colspan]="1">
         <mat-card class="result-card">
           <img class="result-image" src={{result.coverUrl}}/><br>
           <mat-card-content>
@@ -42,26 +41,13 @@
             <tr>Author: {{result.author_name}}</tr>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-button>Details</button>
+            <button mat-button (click) = onBookClicked(result.text[0]) >Details</button>
           </mat-card-actions>
         </mat-card>
       </mat-grid-tile>
     </mat-grid-list>
-
-    
   </div>
-
-  
-      <!-- <ul>
-        <li *ngFor="let result of results.docs" (click) = onBookClicked(result.text[0])>
-          <img src={{result.coverUrl}}/><br>
-          <tr>{{result.title}}</tr>
-          <tr>{{result.author_name}}</tr><br>
-        </li>
-      </ul> -->
-
-
   <div *ngSwitchCase="true">
-    <h1>your mum</h1>
+    <button (click) = "onBackClicked()">Back</button>
   </div>
 </div>

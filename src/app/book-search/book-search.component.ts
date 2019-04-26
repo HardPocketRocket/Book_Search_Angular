@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs/Rx';
 
 import { SearchService } from '../Services/search.service';
 import { DetailsService } from '../Services/details.service'
@@ -22,7 +21,7 @@ export class BookSearchComponent implements OnInit {
   constructor(private searchService: SearchService, private detailsService: DetailsService) { }
 
   ngOnInit() {
-
+    this.onSearchClicked("Harry Potter")
   }
 
   onBookClicked(key: string){
@@ -36,6 +35,10 @@ export class BookSearchComponent implements OnInit {
     })
   }
 
+  onBackClicked(){
+    this.isDetails = false;
+  }
+
   onSearchClicked(searchValue: string) {
     this.isDetails = false;
     this.searchService.setSearchTag(this.searchTag);
@@ -46,7 +49,7 @@ export class BookSearchComponent implements OnInit {
       for (let i = 0; i < this.results.docs.length; i++) {
         this.detailsService.getDetails(this.results.docs[i].text[0]).subscribe(data => {
           for (var key in data) {
-            if (typeof data[key].cover != 'undefined') {
+            if (typeof data[key].cover != 'undefined' && typeof data[key].cover.medium != 'undefined') {
               this.results.docs[i].coverUrl = data[key].cover.medium;
             }
             else{
