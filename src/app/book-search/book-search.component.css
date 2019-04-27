@@ -1,6 +1,10 @@
 .result-card {
-  max-width: 300px;
+  text-align: center;
+  max-width: 250px;
   max-height: 500px;
+  min-width: 250px;
+  min-height: 400px;
+  outline: 5px solid rgb(7, 159, 185);
 }
 
 .result-image {
@@ -11,7 +15,7 @@
 }
 
 .details-card {
-
+  outline: 5px solid rgb(7, 159, 185);
 }
 
 .details-image{
@@ -19,4 +23,11 @@
   max-height: 600px;
   min-height: 600px;
   min-width: 400px;
+}
+
+.result-page{
+    background-color: rgb(255, 255, 255);
+    padding-top: 30px;
+    padding-bottom: 20px;
+    outline: 8px solid rgb(7, 159, 185);
 }

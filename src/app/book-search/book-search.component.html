@@ -1,16 +1,12 @@
-<head>
-	<base href="/search">
-</head>
-
-<div style="text-align:center">
+<div class="result-page" style="text-align:center">
 	<input #search type="text" class="form-control" placeholder="Search">
   <button (click) = "onSearchClicked(search.value)">Search</button>
-  <div>
+<div>
 
-  <div class="form-group">
-    <div class="form-control">
-      <label class="radio-inline">
-        <input type="radio" name="searchBy" value="q" [(ngModel)]="searchTag">
+<div class="form-group">
+  <div class="form-control">
+    <label class="radio-inline">
+      <input type="radio" name="searchBy" value="q" [(ngModel)]="searchTag">
         <span>General</span>
       </label>
       <label class="radio-inline">
@@ -27,7 +23,6 @@
       </label>
     </div>
   </div>
-
 </div>
 
 <div [ngSwitch]="isDetails">
@@ -47,13 +42,12 @@
       </mat-grid-tile>
     </mat-grid-list>
   </div>
+
   <div *ngSwitchCase="true">
-
-
-
+    <br>
     <mat-card class="details-card">
       <mat-card-header>
-        <mat-card-title> Title: {{details.title}}</mat-card-title>
+        <mat-card-title style="text-align:center"> Title: {{details.title}}</mat-card-title>
         <mat-card-subtitle>Author: {{details.authors[0].name}}</mat-card-subtitle>
       </mat-card-header>
       <img class="details-image" src={{details.cover.large}}>

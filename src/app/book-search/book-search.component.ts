@@ -30,8 +30,6 @@ export class BookSearchComponent implements OnInit {
 
   onBookClicked(key: string){
     this.isDetails = true;
-
-    //gets the details of the book that was clicked
     this.detailsService.getDetails(key).subscribe(data => {
       
       //take the data out of the unique key in a uniform way
@@ -46,7 +44,6 @@ export class BookSearchComponent implements OnInit {
 
       //if no author attribute is returned by the API then I provide a default one
       if(typeof this.details.authors === 'undefined'){
-
         var authorInfo: AuthorInfo = [];
         authorInfo.push(<AuthorInfo>{name: 'Unknown', url: 'Unknown'})
         this.details.authors = authorInfo;
@@ -55,7 +52,7 @@ export class BookSearchComponent implements OnInit {
     })
   }
 
-  //when back is clicked i clear the details page
+  //when back is clicked I clear the details page
   onBackClicked(){
     this.isDetails = false;
     this.details = null;
@@ -66,11 +63,10 @@ export class BookSearchComponent implements OnInit {
     this.searchService.setSearchTag(this.searchTag);
     this.searchService.setSearchValue(searchValue);
 
-    //Get the search results from the service
     this.searchService.getResults().subscribe(data => {
       this.results = data;
 
-      //Perform some formating on the search results
+      //Perform some formatting on the search results
       for (let i = 0; i < this.results.docs.length; i++) {
 
         //To display the covers in the search results we have to do another API query and get the covers,
