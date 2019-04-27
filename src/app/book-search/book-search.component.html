@@ -48,6 +48,25 @@
     </mat-grid-list>
   </div>
   <div *ngSwitchCase="true">
-    <button (click) = "onBackClicked()">Back</button>
+
+
+
+    <mat-card class="details-card">
+      <mat-card-header>
+        <mat-card-title> Title: {{details.title}}</mat-card-title>
+        <mat-card-subtitle>Author: {{details.authors[0].name}}</mat-card-subtitle>
+      </mat-card-header>
+      <img class="details-image" src={{details.cover.large}}>
+      <mat-card-content>
+        <p>
+          
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button (click) = "onBackClicked()">Back</button>
+      </mat-card-actions>
+    </mat-card>
+
+
   </div>
 </div>

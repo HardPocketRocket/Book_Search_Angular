@@ -2,6 +2,7 @@ interface RootObject {
   book: Book;
 }
 interface Book {
+  authors: AuthorInfo[];
   publishers: Publisher[];
   pagination: string;
   title: string;
@@ -21,5 +22,10 @@ interface Cover {
 }
 
 interface Publisher {
+  name: string;
+}
+
+interface AuthorInfo {
+  url: string;
   name: string;
 }
