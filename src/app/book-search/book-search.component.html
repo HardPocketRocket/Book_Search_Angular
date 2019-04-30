@@ -1,5 +1,5 @@
 <div class="result-page" style="text-align:center">
-	<input #search type="text" class="form-control" placeholder="Search">
+	<input #search type="text" placeholder="Search">
   <button (click) = "onSearchClicked(search.value)">Search</button>
 <div>
 
@@ -27,7 +27,7 @@
 
 <div [ngSwitch]="isDetails">
   <div *ngSwitchCase="false">
-    <mat-grid-list cols="5" rowHeight="500px">
+    <mat-grid-list cols="6" rowHeight="500px">
       <mat-grid-tile *ngFor="let result of results.docs"[colspan]="1">
         <mat-card class="result-card">
           <img class="result-image" src={{result.coverUrl}}/><br>
@@ -46,14 +46,14 @@
   <div *ngSwitchCase="true">
     <br>
     <mat-card class="details-card">
-      <mat-card-header>
-        <mat-card-title style="text-align:center"> Title: {{details.title}}</mat-card-title>
-        <mat-card-subtitle>Author: {{details.authors[0].name}}</mat-card-subtitle>
-      </mat-card-header>
       <img class="details-image" src={{details.cover.large}}>
       <mat-card-content>
-        <p>
-          
+        <p style="text-align:center">
+          Title: {{details.title}}<br>
+          Author: {{details.authors[0].name}}<br>
+          Publisher: {{details.publishers[0].name}}<br>
+          Publish Date: {{details.publish_date}}<br>
+          Url: {{details.url}}<br>
         </p>
       </mat-card-content>
       <mat-card-actions>

@@ -4,7 +4,7 @@
   max-height: 500px;
   min-width: 250px;
   min-height: 400px;
-  outline: 5px solid rgb(7, 159, 185);
+  /* outline: 8px solid rgb(150, 150, 150); */
 }
 
 .result-image {
@@ -15,7 +15,7 @@
 }
 
 .details-card {
-  outline: 5px solid rgb(7, 159, 185);
+  text-align: center
 }
 
 .details-image{
@@ -29,5 +29,9 @@
     background-color: rgb(255, 255, 255);
     padding-top: 30px;
     padding-bottom: 20px;
-    outline: 8px solid rgb(7, 159, 185);
+    outline: 8px solid rgb(150, 150, 150);
+}
+
+.search-bar{
+  padding: 5px;
 }
