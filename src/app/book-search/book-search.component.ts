@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import {Location} from '@angular/common';
 
 import { SearchService } from '../Services/search.service';
 import { DetailsService } from '../Services/details.service'
@@ -16,13 +17,14 @@ import {AuthorInfo} from '../Models/Book'
 export class BookSearchComponent implements OnInit {
   private searchTag = 'q';
   private isDetails = false;
+  private hasAuthorUrl = true;
 
   private noCoverUrl = 'https://i.imgur.com/J5LVHEL.jpg';
 
   private results: Results;
   private details: Book;
 
-  constructor(private searchService: SearchService, private detailsService: DetailsService) { }
+  constructor(private searchService: SearchService, private detailsService: DetailsService, private location: Location) { }
 
   ngOnInit() {
     this.onSearchClicked("Harry Potter")
@@ -47,8 +49,12 @@ export class BookSearchComponent implements OnInit {
         var authorInfo: AuthorInfo = [];
         authorInfo.push(<AuthorInfo>{name: 'Unknown', url: 'Unknown'})
         this.details.authors = authorInfo;
+        this.hasAuthorUrl = false;
       }
-      console.log(this.details)
+      else{
+        this.hasAuthorUrl = true;
+      }
+      this.location.go(this.details.key);
     })
   }
 
@@ -56,6 +62,7 @@ export class BookSearchComponent implements OnInit {
   onBackClicked(){
     this.isDetails = false;
     this.details = null;
+    this.location.go('/search');
   }
 
   onSearchClicked(searchValue: string) {

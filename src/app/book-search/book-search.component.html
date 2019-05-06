@@ -48,16 +48,23 @@
     <mat-card class="details-card">
       <img class="details-image" src={{details.cover.large}}>
       <mat-card-content>
-        <p style="text-align:center">
-          Title: {{details.title}}<br>
-          Author: {{details.authors[0].name}}<br>
+        <div style="text-align:center">
+          Title: {{details.title}}
+          <div [ngSwitch]="hasAuthorUrl">
+            <div *ngSwitchCase="true">
+              <a href={{details.authors[0].url}}>Author: {{details.authors[0].name}}</a>
+            </div>
+            <div *ngSwitchCase="false">
+              Author: {{details.authors[0].name}}
+            </div>
+          </div>
           Publisher: {{details.publishers[0].name}}<br>
           Publish Date: {{details.publish_date}}<br>
           Url: {{details.url}}<br>
-        </p>
+        </div>
       </mat-card-content>
       <mat-card-actions>
-        <button (click) = "onBackClicked()">Back</button>
+        <button [routerLink]="['/search']" (click) = "onBackClicked()">Back</button>
       </mat-card-actions>
     </mat-card>
 
