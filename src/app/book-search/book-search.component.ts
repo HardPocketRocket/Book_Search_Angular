@@ -54,7 +54,7 @@ export class BookSearchComponent implements OnInit {
       else{
         this.hasAuthorUrl = true;
       }
-      this.location.go(this.details.key);
+      this.location.replaceState(this.details.key);
     })
   }
 
@@ -62,11 +62,12 @@ export class BookSearchComponent implements OnInit {
   onBackClicked(){
     this.isDetails = false;
     this.details = null;
-    this.location.go('/search');
+    this.location.replaceState('/search');
   }
 
   onSearchClicked(searchValue: string) {
     this.isDetails = false;
+    this.location.replaceState('/search');
     this.searchService.setSearchTag(this.searchTag);
     this.searchService.setSearchValue(searchValue);
 
